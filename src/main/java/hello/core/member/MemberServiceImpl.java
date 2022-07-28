@@ -24,6 +24,11 @@ public class MemberServiceImpl implements MemberService {
         return memberRepository.findById(memberId);
     }
 
+    @Override
+    public void updateMember(Member member) {
+        memberRepository.update(member);
+    }
+
     // 테스트 용도
     public MemberRepository getMemberRepository() {
         return memberRepository;

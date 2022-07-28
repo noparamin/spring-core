@@ -16,6 +16,11 @@ public class MemoryMemberRepository implements MemberRepository {
     }
 
     @Override
+    public void update(Member member) {
+        store.put(member.getId(), member);
+    }
+
+    @Override
     public Member findById(Long memberId) {
         return store.get(memberId);
     }
