@@ -29,6 +29,11 @@ public class MemberServiceImpl implements MemberService {
         memberRepository.update(member);
     }
 
+    @Override
+    public void deleteMember(Member member) {
+        memberRepository.delete(member);
+    }
+
     // 테스트 용도
     public MemberRepository getMemberRepository() {
         return memberRepository;

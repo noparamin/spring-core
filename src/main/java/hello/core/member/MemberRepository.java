@@ -6,5 +6,7 @@ public interface MemberRepository {
 
     void update(Member member);
 
+    void delete(Member member);
+
     Member findById(Long memberId);
 }

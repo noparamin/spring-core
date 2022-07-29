@@ -49,4 +49,20 @@ public class MemberServiceTest {
         Assertions.assertThat(member.getName()).isEqualTo(findMember.getName());
 
     }
+
+    @Test
+    @DisplayName("회원 삭제")
+    void delete() {
+        // given
+        Member member = new Member(1L, "David", Grade.VIP);
+
+        // when
+        memberService.join(member);
+        memberService.deleteMember(member);
+
+        Member findMember = memberService.findMember(1L);
+        System.out.println(findMember);
+        // then
+        Assertions.assertThat(member).isNotSameAs(findMember);
+    }
 }
