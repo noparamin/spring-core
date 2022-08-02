@@ -9,4 +9,6 @@ public interface MemberRepository {
     void delete(Member member);
 
     Member findById(Long memberId);
+
+    void clearStore();
 }

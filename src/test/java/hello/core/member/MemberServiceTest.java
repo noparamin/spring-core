@@ -2,6 +2,7 @@ package hello.core.member;
 
 import hello.core.AppConfig;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,12 +10,20 @@ import org.junit.jupiter.api.Test;
 public class MemberServiceTest {
 
     MemberService memberService;
+    MemberRepository memberRepository;
 
     @BeforeEach // 테스트 실행하기 전 실행
     public void beforeEach() {
         AppConfig appConfig = new AppConfig();
         memberService = appConfig.memberService();
+        memberRepository = appConfig.memberRepository();
     }
+
+    @AfterEach
+    public void afterEach() {
+        memberRepository.clearStore();
+    }
+
 
     @Test
     void join() {
@@ -23,11 +32,13 @@ public class MemberServiceTest {
 
         //when
         memberService.join(member);
-        Member findMember = memberService.findMember(1L);
+        //Member findMember = memberService.findMember(1L);
+        Member findMember = memberRepository.findById(1L);
 
         //then
         Assertions.assertThat(member).isEqualTo(findMember);
     }
+
 
     @Test
     @DisplayName("회원정보수정")
